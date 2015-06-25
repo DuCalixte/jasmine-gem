@@ -89,7 +89,7 @@ module Jasmine
     @config
   end
 
-  def self.load_configuration_from_yaml(path = nil)
+  def self.load_configuration_from_yaml(path = nil, spec_file = nil)
     path ||= File.join(Dir.pwd, 'spec', 'javascripts', 'support', 'jasmine.yml')
     if File.exist?(path)
       yaml_loader = lambda do |filepath|
@@ -108,7 +108,10 @@ module Jasmine
         config.css_files = lambda { yaml_config.css_files }
 
         config.spec_dir = yaml_config.spec_dir
-        config.spec_files = lambda { yaml_config.helpers + yaml_config.spec_files }
+        unless ( file && File.exist(file))
+          config.spec_files = lambda { yaml_config.helpers + yaml_config.spec_files }
+        else
+          config.spec_files = lambda { yaml_config.helpers + file }
 
         config.show_console_log = yaml_config.show_console_log
         config.stop_spec_on_expectation_failure = yaml_config.stop_spec_on_expectation_failure
