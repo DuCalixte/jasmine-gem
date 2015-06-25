@@ -108,11 +108,11 @@ module Jasmine
         config.css_files = lambda { yaml_config.css_files }
 
         config.spec_dir = yaml_config.spec_dir
-        
-        unless ( file && File.exist(file))
+
+        unless ( spec_file && File.exist?(spec_file))
           config.spec_files = lambda { yaml_config.helpers + yaml_config.spec_files }
         else
-          config.spec_files = lambda { yaml_config.helpers + file }
+          config.spec_files = lambda { yaml_config.helpers + spec_file }
         end
 
         config.show_console_log = yaml_config.show_console_log
