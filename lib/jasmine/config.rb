@@ -109,6 +109,16 @@ module Jasmine
 
         config.spec_dir = yaml_config.spec_dir
 
+        puts '______________________'
+        puts yaml_config.helpers
+        puts '______________________'
+        puts yaml_config.spec_files
+        puts '______________________'
+        puts yaml_config.helpers +  yaml_config.spec_files
+        puts '______________________'
+        puts spec_file if spec_file
+        puts '________***********___________'
+
         unless ( spec_file && File.exist?(spec_file))
           config.spec_files = lambda { yaml_config.helpers + yaml_config.spec_files }
         else
