@@ -42,8 +42,8 @@ namespace :jasmine do
   task :configure_plugins
 
   desc 'Run continuous integration tests'
-  task :ci => %w(jasmine:require_json jasmine:require jasmine:configure jasmine:configure_plugins) do
-    ci_runner = Jasmine::CiRunner.new(Jasmine.config)
+  task :ci, [:spec_file] => :environment, %w(jasmine:require_json jasmine:require jasmine:configure jasmine:configure_plugins) do |task, args|
+    ci_runner = Jasmine::CiRunner.new(Jasmine.config, args.spec_file)
     exit(1) unless ci_runner.run
   end
 
