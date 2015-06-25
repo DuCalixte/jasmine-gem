@@ -108,10 +108,12 @@ module Jasmine
         config.css_files = lambda { yaml_config.css_files }
 
         config.spec_dir = yaml_config.spec_dir
+        
         unless ( file && File.exist(file))
           config.spec_files = lambda { yaml_config.helpers + yaml_config.spec_files }
         else
           config.spec_files = lambda { yaml_config.helpers + file }
+        end
 
         config.show_console_log = yaml_config.show_console_log
         config.stop_spec_on_expectation_failure = yaml_config.stop_spec_on_expectation_failure
