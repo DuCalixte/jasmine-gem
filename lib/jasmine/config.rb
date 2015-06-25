@@ -112,7 +112,7 @@ module Jasmine
         unless ( spec_file && File.exist?(spec_file))
           config.spec_files = lambda { yaml_config.helpers + yaml_config.spec_files }
         else
-          config.spec_files = lambda { yaml_config.helpers + spec_file }
+          config.spec_files = lambda { yaml_config.helpers + spec_file.to_a }
         end
 
         config.show_console_log = yaml_config.show_console_log
