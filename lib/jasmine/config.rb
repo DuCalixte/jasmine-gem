@@ -120,8 +120,10 @@ module Jasmine
         puts '________***********___________'
 
         unless ( spec_file && File.exist?(spec_file))
+          puts '******** FILE NOT EXISTS *************'
           config.spec_files = lambda { yaml_config.helpers + yaml_config.spec_files }
         else
+          puts '******** FILE EXISTS*************'
           config.spec_files = lambda { yaml_config.helpers + [spec_file] }
         end
 
